@@ -51,31 +51,17 @@ const eliminarPersona = async (req, res) => {
 }
 
 
-//Consume la api externa con un nro de registro fijo.
+//Consume la api externa 
 
 const consumirApi = async (req, res) => {
     try {
-        const respuesta = await axios.get('https://jsonplaceholder.typicode.com/users?id=1');
+        const respuesta = await axios.get('https://api.coindesk.com/v1/bpi/currentprice.json');
         res.status(200).json({ resp: respuesta.data })
     } catch (error) {
         res.status(501).json({ error })
     }
 
 }
-let url = 'https://jsonplaceholder.typicode.com/todos';
-let data = {
-    nombre: "roberto",
-    alias: "carlos",
-    edad: 18
-}
 
-let config = {
-    headers: {
-        Authorization: "bearer asasdjklalsdjkasjlda"
-    }
-}
 
-axios.get(url, data, config).then(response => {
-    console.log(response.data);
-})
 module.exports = { crearPersona, verPersona, verUnaPersona, modificarPersona, eliminarPersona, consumirApi } //exportando index como una funcion no como objeto
